@@ -37,7 +37,7 @@ $$\[
 In simulations of layered quantum circuits, deep networks under constraints, and symbolic recursions, performance peaks at intermediate depths rather than growing indefinitely.
 
 ### 3) Non‑Gaussian generalization
-We also study non‑Gaussian bands: skewed bells, Tsallis/Student‑t (heavy tails), and soliton‑like $$\(\operatorname{sech}^2\)$$. Under **strict log‑concavity** (or quasi log‑concavity) near their modes and regular tails, the product remains **unimodal** and yields a unique maximizer.
+We also study non‑Gaussian bands: skewed bells, Tsallis/Student‑t (heavy tails), and soliton‑like $$(\mathrm{sech}^2)$$. Under **strict log‑concavity** (or quasi log‑concavity) near their modes and regular tails, the product remains **unimodal** and yields a unique maximizer.
 
 
 
