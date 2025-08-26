@@ -3,13 +3,13 @@
 ## Overview
 The **ROLT‑φκ³ Hypothesis** proposes that entropy‑bounded recursive systems exhibit an **optimal depth** \(d^*\) where the trade‑off between coherence gain and stability cost is maximized. The “sweet spot” emerges from two interacting components:
 
-- **Golden‑ratio coherence scaling** (\(\varphi^2 \approx 2.618\)): a natural spectral feature of many recursive structures.  
-- **\(\kappa^3\) stability attractor** (mode \(\mu_\kappa\) typically in the 3–4 range): a cubic‑saturation effect reflecting noise, cost, or entropy constraints.
+- **Golden‑ratio coherence scaling** $$(\(\varphi^2 \approx 2.618\))$$: a natural spectral feature of many recursive structures.  
+- **\(\kappa^3\) stability attractor** $$(mode \(\mu_\kappa\) typically in the 3–4 range)$$: a cubic‑saturation effect reflecting noise, cost, or entropy constraints.
 
 We model depth‑dependent performance as the multiplicative profile
-\[
+$$\[
 \ell(d) = S_\phi(d)\, S_\kappa(d),
-\]
+\]$$
 with a unique maximum \(d^*\) under mild unimodality/log‑concavity assumptions.
 
 > **Important:** This is a **hypothesis**, not a theorem or universal law. The repo documents **fun simulations** and the conclusions we draw from them.
@@ -24,16 +24,16 @@ Most recursive systems face two competing effects:
 - **Dissipative cost** — beyond some point, error, noise, or entropy growth reduces performance.
 
 We formalize with two depth profiles:
-- $$\(S_\phi(d)\)$$: coherence/gain (often modeled as a Gaussian‑like or stretched‑exponential bump centered near \(\varphi^2\)).
+- $$\(S_\phi(d)\)$$: coherence/gain (often modeled as a Gaussian‑like or stretched‑exponential bump centered near $$\(\varphi^2\))$$.
 - $$\(S_\kappa(d)\)$$: stability/capacity (often modeled as a $$sech\(^2\)$$, stretched‑exponential, or heavy‑tailed decay centered near $$\(\mu_\kappa\))$$.
 
 Their product $$\(\ell(d)\)$$ identifies the **effective performance landscape** and the **optimal depth** $$\(d^*\)$$.
 
 ### 2) Why an optimal depth exists
 An optimum naturally arises when **marginal gain equals marginal loss**:
-\[
-$$\frac{d}{dd}\,\ell(d) = 0.$$
-\]
+$$\[
+\frac{d}{dd}\,\ell(d) = 0.
+\]$$
 In simulations of layered quantum circuits, deep networks under constraints, and symbolic recursions, performance peaks at intermediate depths rather than growing indefinitely.
 
 ### 3) Non‑Gaussian generalization
