@@ -1,7 +1,7 @@
 # ROLT-φκ³ Hypothesis: Recursive Layer Optimality & Symbolic Attractor Convergence
 
 ## Overview
-The **ROLT‑φκ³ Hypothesis** proposes that entropy‑bounded recursive systems exhibit an **optimal depth** \(d^*\) where the trade‑off between coherence gain and stability cost is maximized. The “sweet spot” emerges from two interacting components:
+The **ROLT‑φκ³ Hypothesis** proposes that entropy‑bounded recursive systems exhibit an **optimal depth** $$\(d^*\)$$ where the trade‑off between coherence gain and stability cost is maximized. The “sweet spot” emerges from two interacting components:
 
 - **Golden‑ratio coherence scaling** $$(\(\varphi^2 \approx 2.618\))$$: a natural spectral feature of many recursive structures.  
 - **\(\kappa^3\) stability attractor** $$(mode \(\mu_\kappa\) typically in the 3–4 range)$$: a cubic‑saturation effect reflecting noise, cost, or entropy constraints.
@@ -37,9 +37,9 @@ $$\[
 In simulations of layered quantum circuits, deep networks under constraints, and symbolic recursions, performance peaks at intermediate depths rather than growing indefinitely.
 
 ### 3) Non‑Gaussian generalization
-We also study non‑Gaussian bands: skewed bells, Tsallis/Student‑t (heavy tails), and soliton‑like $$\(\operatorname{sech}^2\)$$. Under **strict log‑concavity** (or quasi log‑concavity) near their modes and regular tails, the product remains **unimodal** and yields a unique maximizer.
+We also study non‑Gaussian bands: skewed bells, Tsallis/Student‑t (heavy tails), and soliton‑like \(\operatorname{sech}^2\). Under **strict log‑concavity** (or quasi log‑concavity) near their modes and regular tails, the product remains **unimodal** and yields a unique maximizer.
 
----
+
 
 ## Applications (simulation‑based)
 
