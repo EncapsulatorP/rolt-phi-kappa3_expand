@@ -1,42 +1,36 @@
-# Methods: Simulation Protocols for the ROLT-φκ³ 
+# Methods: Simulation Protocols for ROLT-phi-kappa3
 
-This note documents **our simulations** used to explore  ROLT‑φκ³ . We do not claim universality; we report what we observed in controlled experiments.
+This note summarizes the simulations backing the ROLT-phi-kappa3 framing. Results are illustrative and limited to our controlled runs.
 
-## 1. QAOA-style Quantum Circuits
+## 1. QAOA-style quantum circuits (MaxCut, 3-regular graphs)
 
-### Task
-MaxCut on connected 3-regular graphs with n nodes (n even ≥ 4).
+**Task**: MaxCut on connected 3-regular graphs with even `n` (default `n=8` for brute-force reference).  
+**Depth**: QAOA layer count `d = p`.  
+**Metrics**:  
+- Noiseless approximation ratio `alpha(d)`: expected cut value under the ideal distribution divided by the true optimum.  
+- Noisy fidelity proxy `F(d)`: Hellinger affinity between ideal and noisy bitstring histograms.  
+**Models**:  
+- `S_phi(d)`: coherence/gain bump near `phi^2`.  
+- `S_kappa(d)`: stability/capacity decay with mode near 3-4 (Gaussian or `sech^2` style).  
 
-### Depth
-QAOA depth \(d=p\) (each layer = cost + mixer unitaries).
+**Protocol**
+1. Draw a connected 3-regular graph (reject until connected).
+2. Sweep depths `d = 1..p_max`.
+3. Evaluate `alpha(d)` with an ideal simulator; evaluate `F(d)` with a depolarizing-noise simulator.
+4. Fit or visualize `S_phi`, `S_kappa`, and their product `ell(d)`.
+5. Identify the maximizer `d*` and its sensitivity to noise strength.
 
-### Observables
-- **Noiseless approximation ratio** \(\alpha(d)\): expected cut value under the ideal distribution divided by the max cut (computed by brute force for small n).
-- **Noisy fidelity proxy** \(F(d)\): Hellinger affinity between ideal and noisy bitstring histograms.
+**Scripts**
+- `scripts/qiskit_qaoa_protocol.py` (Qiskit + Aer noise model)
+- `scripts/pennylane_qaoa_protocol.py` (PennyLane default.qubit vs default.mixed)
 
-### Models
-- **Coherence/Gain** \(S_\phi(d)\): Gaussian-like or stretched-exponential bump centered near \(\varphi^2\).
-- **Stability/Capacity** \(S_\kappa(d)\): \(\operatorname{sech}^2\) or heavy-tailed decay centered near \(\mu_\kappa\) in the 3–4 range.
+## 2. Depth gap illustration (classical vs quantum)
+`scripts/depth_gap_plot.py` visualizes how optimal depth scaling differs across classical local models, residual/log-depth models, fault-tolerant quantum regimes, and NISQ-capped quantum regimes.
 
-### Protocol
-1. Generate a random connected 3-regular graph (n=8 by default).
-2. Sweep depths \(d=1\ldots 10\).
-3. Collect \(\alpha(d)\) from an ideal simulator and \(F(d)\) from a depolarizing-noise simulator.
-4. Fit \(S_\phi(d)\) and \(S_\kappa(d)\) (optionally) and analyze \(\ell(d)=S_\phi S_\kappa\).
-5. Identify any optimal depth \(d^*\) and its sensitivity to noise strength.
-
-### Scripts
-- `scripts/qiskit_qaoa_protocol.py` (Qiskit Aer)
-- `scripts/pennylane_qaoa_protocol.py` (PennyLane default.mixed)
-
-## 2. Depth Gap Illustration (Classical vs Quantum)
-We provide `scripts/depth_gap_plot.py` to visualize how optimal depth scales in classical local models vs quantum models (fault-tolerant and NISQ-capped).
-
-## 3. Figures and Template
-- Run `python scripts/make_figures.py` to regenerate the φ–κ³ overlay, non-Gaussian variant, and a synthetic fitting scaffold.
-- A starter CSV (`data/rolt_phi_kappa3_template.csv`) is included for your own stability-vs-depth measurements.
+## 3. Figures and data template
+`python scripts/make_figures.py` regenerates the coherence/stability/product overlay and writes `data/rolt_phi_kappa3_template.csv` for your own stability-vs-depth measurements.
 
 ## 4. Caveats
-- The φ and κ³ forms are **hypothesis-driven fits**. Some systems may show different profiles.
+- ROLT-phi-kappa3 is a hypothesis-driven fit, not a theorem.
 - Results depend on graph size, noise model, and parameter choices.
-- This repository avoids external hardware references; all conclusions are from our own simulations.
+- We report only our own simulations; no external hardware data are included.

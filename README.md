@@ -1,139 +1,79 @@
-# ROLT-φκ³ Hypothesis: Recursive Layer Optimality & Symbolic Attractor Convergence
+# ROLT-phi-kappa3: Recursive Layer Optimality
 
-## Overview
-The **ROLT‑φκ³ Hypothesis** proposes that entropy‑bounded recursive systems exhibit an **optimal depth** $$\(d^*\)$$ where the trade‑off between coherence gain and stability cost is maximized. The “sweet spot” emerges from two interacting components:
+Entropy-bounded recursive systems often peak at an intermediate depth. The ROLT-phi-kappa3 hypothesis models this with two depth profiles whose product forms the performance landscape:
 
-- **Golden‑ratio coherence scaling** $$(\(\varphi^2 \approx 2.618\))$$: a natural spectral feature of many recursive structures.  
-- **\(\kappa^3\) stability attractor** $$(mode \(\mu_\kappa\) typically in the 3–4 range)$$: a cubic‑saturation effect reflecting noise, cost, or entropy constraints.
+* Coherence / gain `S_phi(d)`: typically a log-concave bump near the golden-ratio square (`phi^2 ~ 2.618`).
+* Stability / capacity `S_kappa(d)`: a cubic-style saturation or decay with a mode in the 3-4 range.
 
-We model depth‑dependent performance as the multiplicative profile
-$$\[
-\ell(d) = S_\phi(d)\, S_\kappa(d),
-\]$$
-with a unique maximum \(d^*\) under mild unimodality/log‑concavity assumptions.
-
-> **Important:** This is a **hypothesis**, not a theorem or universal law. The repo documents **fun simulations** and the conclusions we draw from them.
+We study `ell(d) = S_phi(d) * S_kappa(d)` and the optimal depth `d*` that maximizes it. This repository documents simulations, not a universal law.
 
 ---
 
-## Conceptual Framework
-
-### 1) Recursive layer optimization
-Most recursive systems face two competing effects:
-- **Constructive gain** — deeper layers initially improve approximation/representation/coherence.
-- **Dissipative cost** — beyond some point, error, noise, or entropy growth reduces performance.
-
-We formalize with two depth profiles:
-- $$\(S_\phi(d)\)$$: coherence/gain (often modeled as a Gaussian‑like or stretched‑exponential bump centered near $$\(\varphi^2\))$$.
-- $$\(S_\kappa(d)\)$$: stability/capacity (often modeled as a $$sech\(^2\)$$, stretched‑exponential, or heavy‑tailed decay centered near $$\(\mu_\kappa\))$$.
-
-Their product $$\(\ell(d)\)$$ identifies the **effective performance landscape** and the **optimal depth** $$\(d^*\)$$.
-
-### 2) Why an optimal depth exists
-An optimum naturally arises when **marginal gain equals marginal loss**:
-$$\[
-\frac{d}{dd}\,\ell(d) = 0.
-\]$$
-In simulations of layered quantum circuits, deep networks under constraints, and symbolic recursions, performance peaks at intermediate depths rather than growing indefinitely.
-
-### 3) Non‑Gaussian generalization
-We also study non‑Gaussian bands: skewed bells, Tsallis/Student‑t (heavy tails), and soliton‑like $$(\mathrm{sech}^2)$$. Under **strict log‑concavity** (or quasi log‑concavity) near their modes and regular tails, the product remains **unimodal** and yields a unique maximizer.
-
-
-
-## Applications (simulation‑based)
-
-1. **Quantum algorithms (QAOA‑style circuits)**  
-   Simulations with realistic noise models often show optimal depths in the **2–5** range. Beyond that, accumulated noise outweighs coherence gains.
-
-2. **Deep learning (resource‑bounded)**  
-   When data/compute are limited, shallow‑to‑intermediate depth models can outperform much deeper ones. The hypothesis provides a compact way to reason about this balance.
-
-3. **Symbolic AI / recursive reasoning**  
-   Multi‑step planners face combinatorial blow‑up. The hypothesis suggests a principled cutoff depth for efficient reasoning.
-
-4. **Biological & synthetic branching**  
-   Resource‑limited branching processes naturally terminate after a few generations; simulations show this cutoff can be captured by $$\(\phi\)–\(\kappa^3\)$$ balancing.
-
-> We report only **our simulation results** here. External hardware/platform names and third‑party datasets are intentionally excluded.
+## What this repo contains
+- Figure generators for coherence, stability, and their product (`scripts/make_figures.py`).
+- A depth-scaling illustration comparing classical vs quantum regimes (`scripts/depth_gap_plot.py`).
+- Two QAOA MaxCut protocols for small 3-regular graphs:
+  - Qiskit + Aer noise model (`scripts/qiskit_qaoa_protocol.py`).
+  - PennyLane default.qubit vs default.mixed with depolarizing noise (`scripts/pennylane_qaoa_protocol.py`).
+- Paper scaffold and a concise methods note (`paper/`).
 
 ---
 
-## Strengths
-- **Cross‑domain framing:** unifies quantum/AI/biological recursion under a single lens.  
-- **Interpretable:** clean separation of gain $$(\(\phi\))$$ and cost $$(\(\kappa^3\))$$.  
-- **Falsifiable:** predicts a measurable $$\(d^*\)$$; simulations can support or refute.
-
-## Limitations
-- **Not universal:** some systems may lack $$\(\phi\)$$‑like scaling or cubic‑style saturation.  
-- **Simulation‑dependent:** profiles are fitted; not (yet) first‑principles derivations.  
-- **Scope:** intended for **entropy‑bounded** recursion, not exact infinite fractals or unconstrained deep nets.
+## Conceptual frame
+1. **Competing effects**: deeper recursion can increase coherence/expressivity while also accumulating noise/entropy/cost.
+2. **Product profile**: if both `S_phi` and `S_kappa` are unimodal or log-concave near their modes, their product is unimodal with a single maximizer.
+3. **Non-Gaussian variants**: skewed bells, stretched exponentials, `sech^2`, and light heavy-tails also produce a well-behaved product under mild regularity.
 
 ---
 
-## Roadmap
-
-**Phase 1 — Simulation validation**  
-Generate depth‑performance curves across quantum, AI, and symbolic recursion simulations. Fit $$\(S_\phi\)$$, $$\(S_\kappa\)$$, and locate $$\(d^*\)$$.
-
-**Phase 2 — Non‑Gaussian bands**  
-Test skewed/heavy‑tailed/soliton profiles; verify uniqueness conditions and robustness of $$\(d^*\)$$.
-
-**Phase 3 — Comparative studies**  
-Compare predicted vs. simulated optima across tasks and scales. Preregister simple tests where possible.
-
-**Phase 4 — Abstraction layer**  
-Explore symbolic attractors and entropy‑geometry embeddings as higher‑level explanations for observed cutoffs.
-
----
-
-## Getting Started
-
-### Install
+## Quick start
+Install dependencies (pip or conda):
 ```bash
 pip install -r requirements.txt
 # or
 conda env create -f env.yml && conda activate rolt
 ```
 
-### Generate figures (coherence, stability, product)
+Generate the coherence/stability/product figure and template CSV:
 ```bash
 python scripts/make_figures.py
 ```
-Outputs plots under `figs/` and a starter CSV in `data/`.
+Outputs: `figs/rolt_phi_kappa3_fig1.png`, `data/rolt_phi_kappa3_template.csv`.
 
-### Depth‑gap illustration (classical vs quantum scaling)
+Visualize the classical-vs-quantum depth gap:
 ```bash
 python scripts/depth_gap_plot.py
+```
+Output: `figs/depth_gap.png`.
+
+Run QAOA simulations (small graphs only; adjust `p_max`, `shots`, and `noise` as needed):
+```bash
+python scripts/qiskit_qaoa_protocol.py
+python scripts/pennylane_qaoa_protocol.py
 ```
 
 ---
 
-## Repo Structure
+## Repository layout
 ```
-.
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── env.yml
-├── .gitignore
-├── data/
-│   └── rolt_phi_kappa3_template.csv
-├── figs/
-│   ├── rolt_phi_kappa3_fig1.png
-│   └── depth_gap.png
-├── scripts/
-│   ├── make_figures.py
-│   └── depth_gap_plot.py
-└── paper/
-    ├── rolt_phi_kappa3.tex
-    └── methods_onepager.md
+README.md                Project overview and usage
+LICENSE                  MIT
+requirements.txt         Pip dependencies
+env.yml                  Conda environment (python 3.11)
+scripts/                 Plotting and simulation scripts
+paper/                   LaTeX stub and methods note
+data/, figs/             Created on demand by scripts
+.gitignore
 ```
+
+---
+
+## Caveats
+- Simulation-based: parameters are illustrative, not calibrated to hardware.
+- Small-scale: graph sizes are tiny so brute-force MaxCut is feasible.
+- Interpretive: ROLT-phi-kappa3 is a framing, not a theorem.
 
 ---
 
 ## License
-MIT License © 2025
-
-## Notes
-This repository reflects a **hypothesis‑driven, simulation‑based exploration**. It is not positioned as a theorem or universal law.
+MIT License (c) 2025

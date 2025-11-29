@@ -8,3 +8,9 @@ __pycache__/
 *.toc
 *.pdf
 .env
+
+# Generated artifacts
+figs/*
+data/*
+!figs/.gitkeep
+!data/.gitkeep
