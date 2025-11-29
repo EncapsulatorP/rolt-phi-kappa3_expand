@@ -4,6 +4,7 @@
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{enumitem} % Added for better list control
 
 % Custom commands for readability (optional)
 \newcommand{\op}[1]{\hat{#1}}
@@ -61,16 +62,19 @@ $$
 The three scales of modulation strength are $\kappa^3=(\lambda,\lambda r,\lambda r^2)$. For irrational drives, the standard single-layer AA model ($w_2=w_3=0, w_1=1$) exhibits a metal--insulator transition at the self-dual point $\lambda_c=2t$.
 
 \section{Validation Protocol}
-\begin{enumerate}
-    \item[\textbf{A. Localization \& Phase Diagram.}] We sweep $\lambda$ (and $r$) at fixed chain size $L$, computing the mean Inverse Participation Ratio ($\mathrm{IPR}=\sum_n|\psi_n|^4/(\sum_n|\psi_n|^2)^2$). The expectation is that while the single-layer ($r=0$) exhibits the transition near $\lambda\approx2$, the tri-layer with the same variance (total $\mathbf{w}$ norm) should show \textbf{earlier and stronger localization} (nonzero Lyapunov exponent $\gamma$ for smaller $\lambda$).
-    \item[\textbf{B. Lyapunov Exponent.}] Using the transfer matrix method at band center ($E=0$), we compute the Lyapunov exponent $\gamma(\lambda,r;\phi)$. $\gamma>0$ signals exponential localization. We observe $\gamma$ growth with $\lambda$ and typically with $r$.
-    \item[\textbf{C. Multifractality at the Critical Strip.}] Near the single-layer critical point ($\lambda\approx2$), the size-scaling of the generalized moments $P_q=\sum_n|\psi_n|^{2q}$ yields the generalized fractal dimensions $D_q=\tau(q)/(q-1)$. The single-layer AA is known to be multifractal ($D_2 \in (0,1)$). The $\varphi-\kappa^3$ prediction is that the tri-layer lowers $D_q$ at matched variance, reflecting stronger hierarchical pinning.
-    \item[\textbf{D. Entropy Bound.}] The variance normalization of the weight vector $\mathbf{w}$ enforces a fixed ``entropy budget,'' ensuring a fair comparison between the single-layer and tri-layer models at equal total disorder strength.
+\begin{enumerate}[label=\textbf{\Alph*.}, leftmargin=*, align=left]
+    \item \textbf{Localization \& Phase Diagram.} We sweep $\lambda$ (and $r$) at fixed chain size $L$, computing the mean Inverse Participation Ratio ($\mathrm{IPR}=\sum_n|\psi_n|^4/(\sum_n|\psi_n|^2)^2$). The expectation is that while the single-layer ($r=0$) exhibits the transition near $\lambda\approx2$, the tri-layer with the same variance (total $\mathbf{w}$ norm) should show \textbf{earlier and stronger localization} (nonzero Lyapunov exponent $\gamma$ for smaller $\lambda$).
+    
+    \item \textbf{Lyapunov Exponent.} Using the transfer matrix method at band center ($E=0$), we compute the Lyapunov exponent $\gamma(\lambda,r;\phi)$. $\gamma>0$ signals exponential localization. We observe $\gamma$ growth with $\lambda$ and typically with $r$.
+    
+    \item \textbf{Multifractality at the Critical Strip.} Near the single-layer critical point ($\lambda\approx2$), the size-scaling of the generalized moments $P_q=\sum_n|\psi_n|^{2q}$ yields the generalized fractal dimensions $D_q=\tau(q)/(q-1)$. The single-layer AA is known to be multifractal ($D_2 \in (0,1)$). The $\varphi-\kappa^3$ prediction is that the tri-layer lowers $D_q$ at matched variance, reflecting stronger hierarchical pinning.
+    
+    \item \textbf{Entropy Bound.} The variance normalization of the weight vector $\mathbf{w}$ enforces a fixed ``entropy budget,'' ensuring a fair comparison between the single-layer and tri-layer models at equal total disorder strength.
 \end{enumerate}
 
 \section{Representative Results}
 Using Fibonacci-scale chain lengths ($L\in[55, 233]$) with the Zeteon-selected $\phi$, the key empirical findings are:
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
     \item The single-layer model accurately reproduces the AA transition near $\lambda\simeq2$.
     \item The tri-layer model exhibits a nonzero Lyapunov exponent $\gamma$ at smaller $\lambda$ and a higher IPR throughout the phase diagram---demonstrating \textbf{earlier localization at fixed variance}.
     \item At $\lambda\approx2$, the single-layer yields a finite-size estimate of $D_2\approx0.58$, while the tri-layer model reduces $D_2$ (i.e., stronger multifractality, closer to a localized phase).
@@ -81,14 +85,14 @@ These observations are the measurable $\varphi-\kappa^3$ signatures of depth-opt
 Our earlier approach using generalized continued fractions (GCF) with transcendental entries, while mathematically well-defined, suffers from the problem that finite-size truncations are necessarily rational. Therefore, claiming a physical significance for ``near-$(\pi/6)$'' or ``near-$(\mathrm{Li}_3(1/2))$'' is unfounded without an explicit theory linking the Hamiltonian coefficients to these constants. The $\varphi-\kappa^3$ program avoids this flaw by selecting integer-free frequencies $\phi$ with a \textbf{principled, task-optimal rule} tied to the Diophantine incommensurability and AA physics.
 
 \section{Predictions \& Falsifiable Claims}
-\begin{itemize}
+\begin{itemize}[leftmargin=*]
     \item \textbf{Monotonic Trends:} The Lyapunov exponent $\gamma$ increases, and the multifractal dimension $D_q$ decreases, with both $\lambda$ and $r$ under fixed variance.
     \item \textbf{Earlier Localization:} The tri-layer's mobility threshold in $\lambda$ is definitively \textbf{left-shifted} compared to the single-layer model.
     \item \textbf{Frequency Choice Matters:} Replacing the Zeteon-selected $\phi$ by a poorly-selected (near-rational) frequency $\beta$ weakens the $\varphi-\kappa^3$ effect (worse $S_L \implies$ weaker incommensurability $\implies$ delayed localization).
 \end{itemize}
 
 \section{Reproducibility}
-\begin{itemize}
+\begin{itemize}[leftmargin=*]
     \item \textbf{Inputs:} Select chain size $L$ and a set of primes $\mathcal{P}$. Compute $\alpha(p)$ for $p \in \mathcal{P}$, and select the top-3 that maximize $S_L(\alpha)$.
     \item \textbf{Runs:} Perform spectral and localization analysis for (i) single-layer AA; (ii) tri-layer with $r \in [0.5, 0.9]$; (iii) transfer-matrix calculation $\gamma(E=0)$; and (iv) $D_q$ scaling grids near $\lambda\approx2$.
     \item \textbf{Outputs:} Generate CSVs of $(\lambda,r)\mapsto\{\mathrm{IPR},\gamma,D_q\}$ and corresponding figures.
