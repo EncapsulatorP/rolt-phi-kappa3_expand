@@ -74,6 +74,14 @@ data/, figs/             Created on demand by scripts
 - Interpretive: ROLT-phi-kappa3 is a framing, not a theorem.
 
 ---
-
+##message: "If you use this software, please cite it as below."
+```
+title: "ROLT-phi-kappa3: Recursive Layer Optimality"
+authors:
+  - family-names: "Farkas"
+    given-names: "Zolton"
+version: "0.1.0"
+license: "MIT"
+```
 ## License
 MIT License (c) 2025
