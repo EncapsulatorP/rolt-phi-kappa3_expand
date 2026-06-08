@@ -21,16 +21,23 @@ This note summarizes the simulations backing the ROLT-phi-kappa3 framing. Result
 5. Identify the maximizer `d*` and its sensitivity to noise strength.
 
 **Scripts**
-- `scripts/qiskit_qaoa_protocol.py` (Qiskit + Aer noise model)
-- `scripts/pennylane_qaoa_protocol.py` (PennyLane default.qubit vs default.mixed)
+- `scripts/qaoa/qaoa_maxcut_qiskit_aer.py` (Qiskit + Aer noise model)
+- `scripts/qaoa/qaoa_maxcut_pennylane.py` (PennyLane default.qubit vs default.mixed)
 
 ## 2. Depth gap illustration (classical vs quantum)
-`scripts/depth_gap_plot.py` visualizes how optimal depth scaling differs across classical local models, residual/log-depth models, fault-tolerant quantum regimes, and NISQ-capped quantum regimes.
+`scripts/figures/plot_depth_scaling_gap.py` visualizes how optimal depth scaling differs across classical local models, residual/log-depth models, fault-tolerant quantum regimes, and NISQ-capped quantum regimes.
 
 ## 3. Figures and data template
-`python scripts/make_figures.py` regenerates the coherence/stability/product overlay and writes `data/rolt_phi_kappa3_template.csv` for your own stability-vs-depth measurements.
+`python scripts/figures/plot_phi_kappa3_profile.py` regenerates the coherence/stability/product overlay and writes `data/rolt_phi_kappa3_template.csv` for your own stability-vs-depth measurements.
 
-## 4. Caveats
+## 4. Dirac / APS lattice simulations
+
+**Scripts**
+- `scripts/dirac/rolt_dirac_hopping_options.py` — compares four hopping-term variants on the ROLT quasi-periodic potential: standard (Hermitian), non-Hermitian i!, real |i!|, and a single-layer baseline. Reports smoothed eta and spectral gap for each.
+- `scripts/dirac/rolt_aps_eta_3case.py` — APS-style eta and minimum spectral gap for three cases: non-Hermitian tri-layer, Hermitian domain-wall tri-layer, and hybrid non-Hermitian with twisted boundary.
+- `scripts/dirac/rolt_aps_eta_5case_sweep.py` — corrective rewrite with fixed phases, explicit Hermiticity checks, low-energy eta window (|lambda| < cutoff), and one-parameter sweeps over m0 and lambda to track spectral flow.
+
+## 5. Caveats
 - ROLT-phi-kappa3 is a hypothesis-driven fit, not a theorem.
 - Results depend on graph size, noise model, and parameter choices.
 - We report only our own simulations; no external hardware data are included.

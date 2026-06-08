@@ -1,6 +1,6 @@
 """
-rolt_aps_simulation_v2.py
-=========================
+rolt_aps_eta_5case_sweep.py
+===========================
 
 This is a corrective rewrite of the original ROLT/APS toy simulation.
 
@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from pathlib import Path
 
 import matplotlib
 import numpy as np
@@ -525,7 +526,8 @@ def main() -> None:
     print("  The low-energy eta window is the quantity to inspect for zero-mode asymmetry.")
     print("  The mass and lambda sweeps are the cleaner tests for genuine spectral flow.")
 
-    plot_path = "rolt_aps_simulation_v2_full_spectra.png"
+    plot_path = "outputs/figures/rolt_aps_v2_full_spectra.png"
+    Path("outputs/figures").mkdir(parents=True, exist_ok=True)
     plot_full_spectra(summaries, cutoff=cutoff, output_path=plot_path)
     print(f"  Saved full-spectrum plot to {plot_path}")
 

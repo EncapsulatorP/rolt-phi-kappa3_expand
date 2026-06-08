@@ -71,8 +71,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--d_max", type=float, default=8.0, help="Maximum depth to plot.")
     parser.add_argument("--points", type=int, default=400, help="Number of depth samples.")
     parser.add_argument("--stride", type=int, default=20, help="Stride when writing the template CSV.")
-    parser.add_argument("--figs_dir", type=Path, default=Path("figs"), help="Directory for generated figures.")
-    parser.add_argument("--data_dir", type=Path, default=Path("data"), help="Directory for generated data.")
+    parser.add_argument("--figs_dir", type=Path, default=Path("outputs/figures"), help="Directory for generated figures.")
+    parser.add_argument("--data_dir", type=Path, default=Path("outputs/data"), help="Directory for generated data.")
     return parser.parse_args()
 
 

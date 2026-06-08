@@ -53,7 +53,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--alpha_resid", type=float, default=3.0, help="Scale for residual/log-depth classical model.")
     parser.add_argument("--beta_quantum", type=float, default=1.2, help="Scale for fault-tolerant quantum log-depth.")
     parser.add_argument("--noise_lambda", type=float, default=0.02, help="Depolarizing-like cap for NISQ depth.")
-    parser.add_argument("--figs_dir", type=Path, default=Path("figs"), help="Directory for plots.")
+    parser.add_argument("--figs_dir", type=Path, default=Path("outputs/figures"), help="Directory for plots.")
     return parser.parse_args()
 
 

@@ -10,12 +10,23 @@ We study `ell(d) = S_phi(d) * S_kappa(d)` and the optimal depth `d*` that maximi
 ---
 
 ## What this repo contains
-- Figure generators for coherence, stability, and their product (`scripts/make_figures.py`).
-- A depth-scaling illustration comparing classical vs quantum regimes (`scripts/depth_gap_plot.py`).
-- Two QAOA MaxCut protocols for small 3-regular graphs:
-  - Qiskit + Aer noise model (`scripts/qiskit_qaoa_protocol.py`).
-  - PennyLane default.qubit vs default.mixed with depolarizing noise (`scripts/pennylane_qaoa_protocol.py`).
-- Paper scaffold and a concise methods note (`paper/`).
+
+**Figure scripts** (`scripts/figures/`):
+- `plot_phi_kappa3_profile.py` — coherence, stability, and their product overlay; writes `figs/rolt_phi_kappa3_fig1.png` and `data/rolt_phi_kappa3_template.csv`.
+- `plot_depth_scaling_gap.py` — classical vs quantum depth-scaling gap illustration; writes `figs/depth_gap.png`.
+
+**QAOA simulations** (`scripts/qaoa/`):
+- `qaoa_maxcut_qiskit_aer.py` — QAOA MaxCut sweep on 3-regular graphs using Qiskit + Aer depolarizing noise model.
+- `qaoa_maxcut_pennylane.py` — same sweep using PennyLane `default.qubit` (ideal) vs `default.mixed` (depolarizing noise).
+
+**Dirac / APS lattice simulations** (`scripts/dirac/`):
+- `rolt_dirac_hopping_options.py` — compares four hopping-term variants (standard, non-Hermitian i!, real |i!|, single-layer baseline) on the ROLT potential.
+- `rolt_aps_eta_3case.py` — APS-style eta and spectral gap for three Dirac model cases (non-Hermitian, domain-wall, hybrid+twist).
+- `rolt_aps_eta_5case_sweep.py` — corrective rewrite: five cases, fixed phases, proper Hermiticity checks, low-energy eta window, and m0 / lambda parameter sweeps; writes `figs/rolt_aps_v2_full_spectra.png`.
+
+**Paper scaffold** (`paper/`): LaTeX stub and concise methods note.
+
+**Simulation outputs** (`outputs/`): figures and data files written by scripts (not committed; regenerated on demand).
 
 ---
 
@@ -36,20 +47,27 @@ conda env create -f env.yml && conda activate rolt
 
 Generate the coherence/stability/product figure and template CSV:
 ```bash
-python scripts/make_figures.py
+python scripts/figures/plot_phi_kappa3_profile.py
 ```
-Outputs: `figs/rolt_phi_kappa3_fig1.png`, `data/rolt_phi_kappa3_template.csv`.
+Outputs: `outputs/figures/rolt_phi_kappa3_fig1.png`, `outputs/data/rolt_phi_kappa3_template.csv`.
 
 Visualize the classical-vs-quantum depth gap:
 ```bash
-python scripts/depth_gap_plot.py
+python scripts/figures/plot_depth_scaling_gap.py
 ```
-Output: `figs/depth_gap.png`.
+Output: `outputs/figures/depth_gap.png`.
 
 Run QAOA simulations (small graphs only; adjust `p_max`, `shots`, and `noise` as needed):
 ```bash
-python scripts/qiskit_qaoa_protocol.py
-python scripts/pennylane_qaoa_protocol.py
+python scripts/qaoa/qaoa_maxcut_qiskit_aer.py
+python scripts/qaoa/qaoa_maxcut_pennylane.py
+```
+
+Run Dirac / APS lattice simulations:
+```bash
+python scripts/dirac/rolt_dirac_hopping_options.py
+python scripts/dirac/rolt_aps_eta_3case.py
+python scripts/dirac/rolt_aps_eta_5case_sweep.py
 ```
 
 ---
@@ -60,9 +78,16 @@ README.md                Project overview and usage
 LICENSE                  MIT
 requirements.txt         Pip dependencies
 env.yml                  Conda environment (python 3.11)
-scripts/                 Plotting and simulation scripts
+scripts/
+  figures/               Plotting scripts (profile, depth gap)
+  qaoa/                  QAOA MaxCut simulations (Qiskit, PennyLane)
+  dirac/                 Dirac operator / APS eta simulations
 paper/                   LaTeX stub and methods note
-data/, figs/             Created on demand by scripts
+outputs/
+  figures/               Generated plots (PNG)
+  data/                  Generated data (CSV)
+results.md               Summary of simulation results
+nextsteps.md             Planned extensions and open tasks
 .gitignore
 ```
 
