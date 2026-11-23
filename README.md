@@ -110,3 +110,16 @@ license: "MIT"
 ```
 ## License
 MIT License (c) 2025
+
+## Complete HTML readers
+
+
+Download a reader below and open the HTML file in a browser. Each file contains every original page, selectable extracted text where available, a cascading reveal, and **Export GIF** with the EncapsulatorP logo on every frame. All reading assets are included, so the downloaded reader works offline.
+
+The source documents keep their original arguments, qualifications, attribution and reference status. The reading effect does not change those claims. The original print files remain recoverable from the pinned source revisions recorded in [reading-editions.json](reading-editions.json).
+
+| Complete reader | Original pages |
+| --- | ---: |
+| [rolt](paper/rolt.html) | 4 |
+
+To reproduce the reading editions, use the pinned source revisions and the [shared HTML importer](https://github.com/EncapsulatorP/EncapsulatorP.github.io/blob/main/atlas/import_pdf_readers.py). The manifest records the original byte hashes and page coverage.
